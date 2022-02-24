@@ -52,62 +52,62 @@ String led_offBuilt(){
 }
 
 String led_on1(){
-  digitalWrite(led_1, LOW);
+  digitalWrite(led_1, HIGH);
   return responseHTML;
 }
 
 String led_off1(){
-  digitalWrite(led_1, HIGH); 
+  digitalWrite(led_1, LOW); 
   return responseHTML;
 }
 
 String led_on2(){
-  digitalWrite(led_2, LOW);
+  digitalWrite(led_2, HIGH);
   return responseHTML;
 }
 
 String led_off2(){
-  digitalWrite(led_2, HIGH); 
+  digitalWrite(led_2, LOW); 
   return responseHTML;
 }
 
 String led_on3(){
-  digitalWrite(led_3, LOW);
+  digitalWrite(led_3, HIGH);
   return responseHTML;
 }
 
 String led_off3(){
-  digitalWrite(led_3, HIGH); 
+  digitalWrite(led_3, LOW); 
   return responseHTML;
 }
 
 String led_on4(){
-  digitalWrite(led_4, LOW);
+  digitalWrite(led_4, HIGH);
   return responseHTML;
 }
 
 String led_off4(){
-  digitalWrite(led_4, HIGH); 
+  digitalWrite(led_4, LOW); 
   return responseHTML;
 }
 
 String led_on5(){
-  digitalWrite(led_5, LOW);
+  digitalWrite(led_5, HIGH);
   return responseHTML;
 }
 
 String led_off5(){
-  digitalWrite(led_5, HIGH); 
+  digitalWrite(led_5, LOW); 
   return responseHTML;
 }
 
 String led_on6(){
-  digitalWrite(led_6, LOW);
+  digitalWrite(led_6, HIGH);
   return responseHTML;
 }
 
 String led_off6(){
-  digitalWrite(led_6, HIGH); 
+  digitalWrite(led_6, LOW); 
   return responseHTML;
 }
 
