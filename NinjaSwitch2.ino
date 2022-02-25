@@ -10,12 +10,15 @@ ESP8266WebServer webServer(80);
 const char* ssid="AJNIN";
 const char* passwd="f!oxyou!!!.";
 
-int led_1 = 16; //D0 or GPIO16
-int led_2 = 5; //D1 or GPIO5
-int led_3 = 4; //D2 or GPIO4
-int led_4 = 14; //D5 or GPIO14
-int led_5 = 12; //D6 or GPIO12
-int led_6 = 13; //D7 or GPIO13
+int led_0 = 16; //D0 or GPIO16
+int led_1 = 5; //D1 or GPIO5
+int led_2 = 4; //D2 or GPIO4
+int led_3 = 0; //D3 or GPIO0
+int led_4 = 2; //D4 or GPIO2
+int led_5 = 14; //D5 or GPIO14
+int led_6 = 12; //D6 or GPIO12
+int led_7 = 13; //D7 or GPIO13
+int led_8 = 15; //D8 or GPI015
 
 String responseHTML = ""
   "<!DOCTYPE html><html><head>"
@@ -24,23 +27,49 @@ String responseHTML = ""
   "<title>Ninja</title></head><body>"
   "<center><br><br><br>"
   "<h2>Ninja Switch</h2>"
-  "<a class='grn' href=/bon>Built in Turn On</a>"
-  "<a class='red' href=/boff>Built in Turn Off</a>"
-  "<a class='grn' href=/1on>1 Turn On</a>"
-  "<a class='red' href=/1off>1 Turn Off</a>"
-  "<a class='grn' href=/2on>2 Turn On</a>"
-  "<a class='red' href=/2off>2 Turn Off</a>"
-  "<a class='grn' href=/3on>3 Turn On</a>"
-  "<a class='red' href=/3off>3 Turn Off</a>"
-  "<a class='grn' href=/4on>4 Turn On</a>"
-  "<a class='red' href=/4off>4 Turn Off</a>"
-  "<a class='grn' href=/5on>5 Turn On</a>"
-  "<a class='red' href=/5off>5 Turn Off</a>"
-  "<a class='grn' href=/6on>6 Turn On</a>"
-  "<a class='red' href=/6off>6 Turn Off</a>"
+  "<div class='bg'>"
+  "<a class='grn' href=/bon>BuiltIn LED Turn On</a>"
+  "<a class='red' href=/boff>BuiltIn LED Turn Off</a>"
+  "</div>"
+  "<div class='bg'>"
+  "<a class='grn' href=/0on>D0|GPIO16 Turn On</a>"
+  "<a class='red' href=/0off>D0|GPIO16 Turn Off</a>"
+  "</div>"
+  "<div class='bg'>"
+  "<a class='grn' href=/1on>D1|GPIO5 Turn On</a>"
+  "<a class='red' href=/1off>D1|GPIO5 Turn Off</a>"
+  "</div>"
+  "<div class='bg'>"
+  "<a class='grn' href=/2on>D2|GPIO4 Turn On</a>"
+  "<a class='red' href=/2off>D2|GPIO4 Turn Off</a>"
+  "</div>"
+  "<div class='bg'>"
+  "<a class='grn' href=/3on>D3|GPIO0 Turn On</a>"
+  "<a class='red' href=/3off>D3|GPIO0 Turn Off</a>"
+  "</div>"
+  "<div class='bg'>"
+  "<a class='grn' href=/4on>D4|GPIO2 Turn On</a>"
+  "<a class='red' href=/4off>D4|GPIO2 Turn Off</a>"
+  "</div>"
+  "<div class='bg'>"
+  "<a class='grn' href=/5on>D5|GPIO14 Turn On</a>"
+  "<a class='red' href=/5off>D5|GPIO14 Turn Off</a>"
+  "</div>"
+  "<div class='bg'>"
+  "<a class='grn' href=/6on>D6|GPIO12 Turn On</a>"
+  "<a class='red' href=/6off>D6|GPIO12 Turn Off</a>"
+  "</div>"
+  "<div class='bg'>"
+  "<a class='grn' href=/7on>D7|GPIO13 Turn On</a>"
+  "<a class='red' href=/7off>D7|GPIO13 Turn Off</a>"
+  "</div>"
+  "<div class='bg'>"
+  "<a class='grn' href=/8on>D8|GPIO15 Turn On</a>"
+  "<a class='red' href=/8off>D8|GPIO15 Turn Off</a>"
+  "</div>"
   "</center>"
   "</body>"
-  "<style>body{user-select: none;background-color: #303030;margin: 0;height: 100vh;}center{background-color: #151515;height: 100%;}.grn{background-color: green;}.red{background-color: maroon;}h2{color: cyan;font-family: sans-serif;margin: 0;}a{user-select: none;color: cyan;font-family: sans-serif;text-decoration: none;display: block;padding: 10px;margin: 5px;width: 20%;border-radius: 10px;border: 1px solid cyan;}a:active{background-color: rgb(0,0,0, 0.1);}@media (max-width: 900px){a{width: 60%;}}</style>"
+  "<style>.bg{background-color:#232323; margin: 10px; border-radius: 10px; border: 3px dotted darkcyan; padding:10px; width: 20%;}body{user-select: none;background-color: #303030;margin: 0;height: 100vh;}center{height: 100%;}.grn{background-color: green;}.red{background-color: maroon;}h2{color: cyan;font-family: sans-serif;margin: 0;}a{user-select: none;color: cyan;font-family: sans-serif;text-decoration: none;display: block;padding: 10px;margin: 5px;border-radius: 10px;border: 1px solid cyan;}a:active{background-color: rgb(0,0,0, 0.1);}@media (max-width: 900px){.bg{width: 70%}}</style>"
   "</html>";
 
 String led_onBuilt(){
@@ -50,6 +79,16 @@ String led_onBuilt(){
 
 String led_offBuilt(){
   digitalWrite(LED_BUILTIN, HIGH); 
+  return responseHTML;
+}
+
+String led_on0(){
+  digitalWrite(led_0, HIGH);
+  return responseHTML;
+}
+
+String led_off0(){
+  digitalWrite(led_0, LOW); 
   return responseHTML;
 }
 
@@ -113,14 +152,37 @@ String led_off6(){
   return responseHTML;
 }
 
+String led_on7(){
+  digitalWrite(led_7, HIGH);
+  return responseHTML;
+}
+
+String led_off7(){
+  digitalWrite(led_7, LOW); 
+  return responseHTML;
+}
+
+String led_on8(){
+  digitalWrite(led_8, HIGH);
+  return responseHTML;
+}
+
+String led_off8(){
+  digitalWrite(led_8, LOW); 
+  return responseHTML;
+}
+
 void setup() {
   pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(led_0, OUTPUT);
   pinMode(led_1, OUTPUT);
   pinMode(led_2, OUTPUT);
   pinMode(led_3, OUTPUT);
   pinMode(led_4, OUTPUT);
   pinMode(led_5, OUTPUT);
   pinMode(led_6, OUTPUT);
+  pinMode(led_7, OUTPUT);
+  pinMode(led_8, OUTPUT);
 
   Serial.begin(115200);
   Serial.println();
@@ -144,6 +206,10 @@ void setup() {
   // if DNSServer is started with "*" for domain name, it will reply with
   // provided IP to all DNS request
   dnsServer.start(DNS_PORT, "*", apIP);
+  webServer.on("/bon",[]() { webServer.send(200, "text/html", led_onBuilt()); });
+  webServer.on("/boff",[]() { webServer.send(200, "text/html", led_offBuilt()); });
+  webServer.on("/0on",[]() { webServer.send(200, "text/html", led_on0()); });
+  webServer.on("/0off",[]() { webServer.send(200, "text/html", led_off0()); });
   webServer.on("/1on",[]() { webServer.send(200, "text/html", led_on1()); });
   webServer.on("/1off",[]() { webServer.send(200, "text/html", led_off1()); });
   webServer.on("/2on",[]() { webServer.send(200, "text/html", led_on2()); });
@@ -156,8 +222,11 @@ void setup() {
   webServer.on("/5off",[]() { webServer.send(200, "text/html", led_off5()); });
   webServer.on("/6on",[]() { webServer.send(200, "text/html", led_on6()); });
   webServer.on("/6off",[]() { webServer.send(200, "text/html", led_off6()); });
-  webServer.on("/bon",[]() { webServer.send(200, "text/html", led_onBuilt()); });
-  webServer.on("/boff",[]() { webServer.send(200, "text/html", led_offBuilt()); });
+  webServer.on("/7on",[]() { webServer.send(200, "text/html", led_on7()); });
+  webServer.on("/7off",[]() { webServer.send(200, "text/html", led_off7()); });
+  webServer.on("/8on",[]() { webServer.send(200, "text/html", led_on8()); });
+  webServer.on("/8off",[]() { webServer.send(200, "text/html", led_off8()); });
+
   webServer.onNotFound([]() {
     webServer.send(200, "text/html", responseHTML);
   });
