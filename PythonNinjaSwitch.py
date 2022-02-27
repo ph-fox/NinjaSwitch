@@ -39,8 +39,11 @@ try:
 |   6 == D6 | GPIO12     |
 |   7 == D7 | GPIO13     |
 |   8 == D8 | GPIO15     |
+|   x == Exit            |
 |________________________|""")
 			ui = input('~> ')
+			if ui.lower() == 'x':
+				exit()
 			ui2 = input("on/off: ").lower()
 			if ui2 == "on":
 				on(ui, url)
